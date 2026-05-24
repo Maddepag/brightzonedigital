@@ -1,181 +1,720 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Brightzone Digital | Beauty & Wellness Marketing</title>
-  <meta
-    name="description"
-    content="Brightzone Digital helps beauty and wellness brands grow with digital marketing, lead generation, and conversion-focused client experiences."
-  >
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap"
-    rel="stylesheet"
-  >
-  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..700,50&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=Libre+Baskerville:wght@400;700&family=Nunito:wght@500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --color-text-primary: #18343a;
+      --color-text-secondary: #4c6b73;
+      --color-text-tertiary: #7f9aa0;
+      --color-bg: #f6fcfb;
+      --color-bg-secondary: rgba(232, 247, 243, 0.72);
+      --color-surface: rgba(255, 255, 255, 0.8);
+      --color-border: rgba(46, 132, 146, 0.14);
+      --color-border-strong: rgba(46, 132, 146, 0.28);
+      --color-accent: #58bbaf;
+      --color-accent-deep: #2f7e8b;
+      --font-serif: 'Fraunces', serif;
+      --font-sans: 'DM Sans', sans-serif;
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-pill: 100px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      color-scheme: light;
+      font-family: var(--font-sans);
+      font-weight: 400;
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--color-text-primary);
+      background:
+        radial-gradient(circle at top left, rgba(88, 187, 175, 0.22), transparent 34%),
+        radial-gradient(circle at bottom right, rgba(76, 160, 181, 0.18), transparent 32%),
+        linear-gradient(180deg, #f7fdfc 0%, #edf8f5 100%);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: 1rem;
+      top: -3rem;
+      z-index: 1000;
+      padding: 0.7rem 1rem;
+      border-radius: var(--radius-sm);
+      background: var(--color-text-primary);
+      color: #f7fffd;
+      text-decoration: none;
+      transition: top 0.15s ease;
+    }
+
+    .skip-link:focus {
+      top: 1rem;
+    }
+
+    .a11y-widget {
+      position: fixed;
+      right: 1rem;
+      bottom: 1rem;
+      z-index: 999;
+    }
+
+    .a11y-toggle {
+      font: inherit;
+      border: 0;
+      border-radius: 999px;
+      padding: 0.8rem 1rem;
+      background: linear-gradient(135deg, var(--color-accent), var(--color-accent-deep));
+      color: #f7fffd;
+      box-shadow: 0 12px 24px rgba(47, 126, 139, 0.18);
+      cursor: pointer;
+    }
+
+    .a11y-panel {
+      width: min(320px, calc(100vw - 2rem));
+      margin-top: 0.75rem;
+      padding: 1rem;
+      border: 1px solid var(--color-border-strong);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.96);
+      box-shadow: 0 20px 40px rgba(24, 52, 58, 0.16);
+      backdrop-filter: blur(12px);
+    }
+
+    .a11y-panel[hidden] {
+      display: none;
+    }
+
+    .a11y-panel h2 {
+      font-size: 1rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .a11y-panel p {
+      font-size: 0.9rem;
+      color: var(--color-text-secondary);
+      margin-bottom: 0.9rem;
+    }
+
+    .a11y-controls {
+      display: grid;
+      gap: 0.65rem;
+    }
+
+    .a11y-option {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      font-size: 0.95rem;
+    }
+
+    .a11y-option input {
+      inline-size: 1.1rem;
+      block-size: 1.1rem;
+      accent-color: var(--color-accent-deep);
+    }
+
+    body.a11y-large-text {
+      font-size: 17px;
+    }
+
+    body.a11y-large-text .hero p,
+    body.a11y-large-text .section-sub,
+    body.a11y-large-text .cta-block > p,
+    body.a11y-large-text .service-card p,
+    body.a11y-large-text .step-body p,
+    body.a11y-large-text .cta-email {
+      font-size: 1.05em;
+      line-height: 1.8;
+    }
+
+    body.a11y-high-contrast {
+      --color-text-primary: #0d2227;
+      --color-text-secondary: #24464d;
+      --color-text-tertiary: #42626a;
+      --color-bg: #ffffff;
+      --color-bg-secondary: rgba(226, 244, 241, 0.96);
+      --color-surface: rgba(255, 255, 255, 0.98);
+      --color-border: rgba(25, 98, 109, 0.28);
+      --color-border-strong: rgba(25, 98, 109, 0.45);
+    }
+
+    body.a11y-high-contrast .btn-primary {
+      box-shadow: none;
+    }
+
+    body.a11y-highlight-links a:not(.btn-primary):not(.nav-cta):not(.logo) {
+      color: #0f5f85;
+      text-decoration-thickness: 2px;
+    }
+
+    body.a11y-highlight-links .btn-ghost {
+      color: #0f5f85;
+      text-decoration-thickness: 2px;
+    }
+
+    body.a11y-reduced-motion,
+    body.a11y-reduced-motion html {
+      scroll-behavior: auto;
+    }
+
+    body.a11y-reduced-motion *,
+    body.a11y-reduced-motion *::before,
+    body.a11y-reduced-motion *::after {
+      transition: none !important;
+      animation: none !important;
+    }
+
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* â”€â”€ Nav â”€â”€ */
+    nav {
+      padding: 1.25rem 0 1.5rem;
+      border-bottom: 0.5px solid var(--color-border);
+      margin-bottom: 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 500;
+      font-size: 17px;
+      letter-spacing: 0.01em;
+      text-transform: none;
+      color: var(--color-text-secondary);
+      text-decoration: none;
+    }
+
+    .logo strong {
+      font-weight: 800;
+      color: var(--color-text-primary);
+    }
+
+    .nav-cta {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--color-text-primary);
+      background: none;
+      border: 0.5px solid var(--color-border-strong);
+      padding: 6px 14px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.15s, border-color 0.15s;
+    }
+
+    .nav-cta:hover {
+      background: var(--color-bg-secondary);
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 3px solid rgba(47, 126, 139, 0.38);
+      outline-offset: 3px;
+    }
+
+    /* â”€â”€ Hero â”€â”€ */
+    .hero {
+      padding: 1rem 0 3.5rem;
+      border-bottom: 0.5px solid var(--color-border);
+      margin-bottom: 3rem;
+    }
+
+    .hero h1 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 52px;
+      font-weight: 500;
+      line-height: 1.12;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--color-text-secondary);
+    }
+
+    .hero p {
+      font-size: 17px;
+      line-height: 1.65;
+      color: var(--color-text-secondary);
+      max-width: 520px;
+      font-weight: 300;
+      margin-bottom: 2rem;
+    }
+
+    .hero p strong {
+      color: var(--color-text-primary);
+      font-weight: 500;
+    }
+
+    .cta-row {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 500;
+      background: linear-gradient(135deg, var(--color-accent), var(--color-accent-deep));
+      color: #f7fffd;
+      border: none;
+      padding: 10px 20px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      box-shadow: 0 12px 24px rgba(47, 126, 139, 0.18);
+      transition: opacity 0.15s, transform 0.15s;
+    }
+
+    .btn-primary:hover { opacity: 0.92; transform: translateY(-1px); }
+
+    .btn-ghost {
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--color-text-secondary);
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .btn-ghost:hover { color: var(--color-text-primary); }
+
+    /* â”€â”€ Sections â”€â”€ */
+    section { margin-bottom: 3.5rem; }
+
+    .label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-text-tertiary);
+      margin-bottom: 1.25rem;
+    }
+
+    .section-head {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 30px;
+      font-weight: 500;
+      line-height: 1.2;
+      margin-bottom: 0.75rem;
+    }
+
+    .section-sub {
+      font-size: 15px;
+      color: var(--color-text-secondary);
+      max-width: 480px;
+      font-weight: 300;
+      line-height: 1.65;
+      margin-bottom: 2rem;
+    }
+
+    hr.divider {
+      border: none;
+      border-top: 0.5px solid var(--color-border);
+      margin: 0 0 3rem;
+    }
+
+    /* â”€â”€ Services grid â”€â”€ */
+    .services-grid {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      border: 0.5px solid var(--color-border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(88, 187, 175, 0.16), rgba(76, 160, 181, 0.14));
+    }
+
+    .service-card {
+      background: var(--color-surface);
+      padding: 1.25rem;
+      backdrop-filter: blur(10px);
+    }
+
+    .service-num {
+      font-family: var(--font-serif);
+      font-size: 24px;
+      color: var(--color-text-tertiary);
+      display: block;
+      margin-bottom: 8px;
+      line-height: 1;
+      font-variation-settings: "SOFT" 50;
+    }
+
+    .service-card h3 {
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+
+    .service-card p {
+      font-size: 13px;
+      color: var(--color-text-secondary);
+      font-weight: 300;
+      line-height: 1.6;
+    }
+
+    /* â”€â”€ Tags â”€â”€ */
+    .tag-row {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 1rem;
+    }
+
+    .tag {
+      font-size: 13px;
+      font-weight: 400;
+      padding: 5px 12px;
+      border: 0.5px solid var(--color-border);
+      border-radius: var(--radius-pill);
+      color: var(--color-text-secondary);
+    }
+
+    /* â”€â”€ Steps â”€â”€ */
+    .steps {
+      list-style: none;
+      border: 0.5px solid var(--color-border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+
+    .step {
+      display: flex;
+      gap: 1rem;
+      padding: 1.1rem 1.25rem;
+      border-bottom: 0.5px solid var(--color-border);
+      align-items: flex-start;
+    }
+
+    .step:last-child { border-bottom: none; }
+
+    .step-n {
+      font-family: var(--font-serif);
+      font-size: 18px;
+      color: var(--color-text-tertiary);
+      min-width: 20px;
+      line-height: 1.4;
+      flex-shrink: 0;
+      font-variation-settings: "SOFT" 50;
+    }
+
+    .step-body h3 {
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 3px;
+    }
+
+    .step-body p {
+      font-size: 13px;
+      color: var(--color-text-secondary);
+      font-weight: 300;
+      line-height: 1.55;
+    }
+
+    /* â”€â”€ CTA block â”€â”€ */
+    .cta-block {
+      padding: 2.5rem 0 3rem;
+      border-top: 0.5px solid var(--color-border);
+    }
+
+    .cta-block h2 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 34px;
+      font-weight: 500;
+      line-height: 1.2;
+      margin-bottom: 0.75rem;
+    }
+
+    .cta-block > p {
+      font-size: 15px;
+      color: var(--color-text-secondary);
+      font-weight: 300;
+      max-width: 440px;
+      margin-bottom: 1.5rem;
+      line-height: 1.65;
+    }
+
+    .cta-email {
+      margin-top: 12px;
+      font-size: 14px;
+      color: var(--color-text-secondary);
+      font-weight: 300;
+    }
+
+    .cta-email a {
+      color: var(--color-text-primary);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* â”€â”€ Mobile â”€â”€ */
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+      *,
+      *::before,
+      *::after {
+        transition: none !important;
+      }
+    }
+
+    @media (max-width: 540px) {
+      .container { padding: 0 1.2rem; }
+      .a11y-widget {
+        right: 0.75rem;
+        bottom: 0.75rem;
+      }
+      nav {
+        gap: 1rem;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+      .logo {
+        font-size: 16px;
+        line-height: 1.45;
+      }
+      .nav-cta {
+        width: 100%;
+        text-align: center;
+      }
+      .hero {
+        padding: 0.25rem 0 2.5rem;
+        margin-bottom: 2.5rem;
+      }
+      .hero h1 { font-size: 38px; }
+      .hero p,
+      .section-sub,
+      .cta-block > p {
+        font-size: 15px;
+      }
+      .cta-row {
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .btn-primary,
+      .btn-ghost {
+        width: 100%;
+        text-align: center;
+      }
+      .services-grid { grid-template-columns: 1fr; }
+      .cta-block h2 { font-size: 28px; }
+    }
+  </style>
 </head>
 <body>
-  <div class="page-shell">
-    <header class="site-header">
-      <div class="brand-lockup">
-        <svg class="brand-mark" viewBox="0 0 108 84" aria-hidden="true">
-          <path class="sun-center-line" d="M53 20c7 0 13 3 17 8 4 5 6 11 5 18-1 7-4 12-9 16-5 4-11 6-18 5-7-1-12-4-16-9-4-5-5-11-4-18 1-6 4-11 9-15 5-4 10-6 16-5z"></path>
-          <path class="sun-ray ray-1" d="M53 8c0 5 0 9-1 13"></path>
-          <path class="sun-ray ray-2" d="M78 16c-2 4-4 7-8 10"></path>
-          <path class="sun-ray ray-3" d="M92 41c-5 0-9 0-14 1"></path>
-          <path class="sun-ray ray-4" d="M83 66c-3-3-6-6-10-8"></path>
-          <path class="sun-ray ray-5" d="M53 75c1-5 1-9 0-14"></path>
-          <path class="sun-ray ray-6" d="M24 66c4-3 8-5 11-8"></path>
-          <path class="sun-ray ray-7" d="M14 39c5 1 9 2 14 2"></path>
-          <path class="sun-ray ray-8" d="M23 17c4 2 7 5 10 8"></path>
-        </svg>
-        <div>
-          <p class="brand-name">Brightzone Digital</p>
-          <p class="brand-tag">Beauty & wellness growth partners</p>
-        </div>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div class="a11y-widget">
+    <button
+      type="button"
+      class="a11y-toggle"
+      aria-expanded="false"
+      aria-controls="a11y-panel"
+      id="a11y-toggle"
+    >
+      Accessibility
+    </button>
+    <div class="a11y-panel" id="a11y-panel" hidden>
+      <h2>Accessibility Options</h2>
+      <p>Adjust the page display to fit your reading preferences.</p>
+      <div class="a11y-controls">
+        <label class="a11y-option" for="a11y-large-text">
+          <span>Larger text</span>
+          <input type="checkbox" id="a11y-large-text">
+        </label>
+        <label class="a11y-option" for="a11y-high-contrast">
+          <span>Higher contrast</span>
+          <input type="checkbox" id="a11y-high-contrast">
+        </label>
+        <label class="a11y-option" for="a11y-highlight-links">
+          <span>Highlight links</span>
+          <input type="checkbox" id="a11y-highlight-links">
+        </label>
+        <label class="a11y-option" for="a11y-reduced-motion">
+          <span>Reduce motion</span>
+          <input type="checkbox" id="a11y-reduced-motion">
+        </label>
       </div>
-      <nav class="site-nav" aria-label="Primary">
-        <a href="#pain">Problem</a>
-        <a href="#engine">Booking Engine</a>
-        <a href="#proof">Proof</a>
-        <a href="#process">Process</a>
-        <a href="#contact">Contact</a>
-      </nav>
+    </div>
+  </div>
+  <div class="container">
+
+    <header>
+    <nav aria-label="Primary">
+      <a href="#main-content" class="logo"><strong>brightzone digital</strong> | Growth Marketing</a>
+      <a href="mailto:hello@brightzonedigital.com" class="nav-cta">Get in touch</a>
+    </nav>
     </header>
 
-    <main>
-      <section class="hero">
-        <div class="hero-copy">
-          <p class="eyebrow">Client acquisition for med spas</p>
-          <h1>The Client Acquisition System Built for Med Spas</h1>
-          <p class="hero-text">
-            Designed to increase bookings, lower cost per client, and show <em>exactly</em> what's driving revenue.
-          </p>
-          <div class="hero-actions">
-            <a class="button button-primary" href="#contact">Get Your Free Funnel Audit</a>
-            <a class="button button-secondary" href="#engine">See the System</a>
-          </div>
-          <ul class="hero-points">
-            <li>More booked consultations</li>
-            <li>Clear source-level attribution</li>
-            <li>Funnel decisions backed by ROI data</li>
-          </ul>
-        </div>
-        <div class="hero-card">
-          <div class="hero-panel">
-            <p class="panel-label">What changes when the funnel works</p>
-            <div class="metric-list">
-              <article>
-                <strong>Booked Appointments</strong>
-                <span>More qualified consultations landing on the calendar each month.</span>
-              </article>
-              <article>
-                <strong>Cost Per Booked Client</strong>
-                <span>Know exactly what you're paying to generate a real appointment.</span>
-              </article>
-              <article>
-                <strong>Revenue Visibility</strong>
-                <span>Track what channels actually drive treatments, not just traffic.</span>
-              </article>
-            </div>
-          </div>
-        </div>
-      </section>
+    <main id="main-content">
+    <section class="hero" aria-labelledby="hero-title">
+      <h1 id="hero-title">More bookings.<br><em>Less guesswork.</em></h1>
+      <p>We help <strong>beauty and wellness businesses</strong> turn their website and Google presence into a steady stream of new clients &mdash; and track exactly what it costs to get each booking.</p>
+      <div class="cta-row">
+        <a href="mailto:hello@brightzonedigital.com" class="btn-primary">Book a free call</a>
+        <a href="#services" class="btn-ghost">See what we do</a>
+      </div>
+    </section>
 
-      <section class="section" id="pain">
-        <div class="section-heading">
-          <p class="eyebrow">The Problem</p>
-          <h2>Most med spa websites are silently killing your revenue.</h2>
-          <p>
-            If you don't know your cost per booked client, you don't have a marketing system. You
-            have a guessing game.
-          </p>
-        </div>
-        <div class="service-grid pain-grid">
-          <article class="service-card pain-card">
-            <h3>Too Many Clicks To Book</h3>
-            <p>Each extra step creates drop-off before clients schedule.</p>
-          </article>
-          <article class="service-card pain-card">
-            <h3>No Clear Offer</h3>
-            <p>Your audience lands, scrolls, and leaves because the value proposition never gets sharp.</p>
-          </article>
-          <article class="service-card pain-card">
-            <h3>No Tracking</h3>
-            <p>Without attribution, you can't tell what campaigns, pages, or channels produce bookings.</p>
-          </article>
-          <article class="service-card pain-card">
-            <h3>Traffic With No ROI Clarity</h3>
-            <p>Agencies can send clicks all day, but clicks don't matter if you can't trace revenue.</p>
-          </article>
-        </div>
-        <p class="section-quote">
-          If your schedule isn't filling up, your funnel is broken, not your market.
-        </p>
-      </section>
+    <section id="services" aria-labelledby="services-title">
+      <p class="label">What we do</p>
+      <h2 class="section-head" id="services-title">Four things. Done properly.</h2>
+      <p class="section-sub">No retainers for work you don't need. We focus on the parts of your online presence that directly drive bookings.</p>
+      <ul class="services-grid">
+        <li class="service-card">
+          <span class="service-num">01</span>
+          <h3>Website optimization</h3>
+          <p>We fix the things that cause visitors to leave without booking &mdash; slow load times, confusing navigation, weak calls to action.</p>
+        </li>
+        <li class="service-card">
+          <span class="service-num">02</span>
+          <h3>Google Maps storefront</h3>
+          <p>Your Google Business profile is often the first thing a new client sees. We make sure it builds trust and drives clicks to book.</p>
+        </li>
+        <li class="service-card">
+          <span class="service-num">03</span>
+          <h3>Conversion tracking</h3>
+          <p>You'll know your cost per booked client, where leads come from, and what's actually working &mdash; not just impressions and clicks.</p>
+        </li>
+        <li class="service-card">
+          <span class="service-num">04</span>
+          <h3>Paid search & social</h3>
+          <p>Targeted ads that reach people actively looking for your services, built to convert &mdash; not just to get seen.</p>
+        </li>
+      </ul>
+    </section>
 
-      <section class="section" id="engine">
-        <div class="split-layout">
-          <div>
-            <p class="eyebrow">The Mechanism</p>
-            <h2>The BrightZone Booking Engine&#8482;</h2>
-            <p>
-              We don't simply build websites. We deliver a client acquisition system engineered to turn
-              attention into booked appointments and measurable ROI.
-            </p>
-          </div>
-          <div class="industry-list engine-list">
-            <span>Conversion-optimized landing pages</span>
-            <span>Frictionless booking flow</span>
-            <span>Call and form tracking</span>
-            <span>Source-level attribution</span>
-            <span>Simple ROI dashboard</span>
-          </div>
-        </div>
-      </section>
+    <hr class="divider" />
 
-      <section class="section" id="process">
-        <div class="section-heading">
-          <p class="eyebrow">The Process</p>
-          <h2>Simple to understand. Focused entirely on results.</h2>
-        </div>
-        <div class="approach-grid">
-          <article>
-            <span>01</span>
-            <h3>Audit</h3>
-            <p>Identify where you're losing bookings, where tracking breaks, and where revenue leaks.</p>
-          </article>
-          <article>
-            <span>02</span>
-            <h3>Build</h3>
-            <p>Create your high-converting funnel and install the tracking system behind it.</p>
-          </article>
-          <article>
-            <span>03</span>
-            <h3>Optimize</h3>
-            <p>Monitor results, refine the bottlenecks, and increase booked appointments over time.</p>
-          </article>
-        </div>
-      </section>
+    <section id="who" aria-labelledby="who-title">
+      <p class="label">Who this is for</p>
+      <h2 class="section-head" id="who-title">Built for service businesses<br>where trust sells the appointment.</h2>
+      <p class="section-sub">Your clients research before they book. A weak web presence means they go to someone else &mdash; even if you're better.</p>
+      <ul class="tag-row" aria-label="Ideal client types">
+        <li class="tag">Medspas</li>
+        <li class="tag">Hair salons</li>
+        <li class="tag">Skin care clinics</li>
+        <li class="tag">Aesthetic practices</li>
+        <li class="tag">Wellness studios</li>
+        <li class="tag">Nail & beauty bars</li>
+      </ul>
+    </section>
 
-      <section class="section contact" id="contact">
-        <div class="contact-card">
-          <div>
-            <p class="eyebrow">The bottom line</p>
-            <h2>We'll rebuild your funnel and tracking system to generate 30+ new booked clients in 60 days.</h2>
-            <p>
-              If we don't hit the mark, we continue optimizing at no additional cost. Less guesswork,
-              less wasted spend, and a clear path to more appointments on the calendar.
-            </p>
+    <hr class="divider" />
+
+    <section id="process" aria-labelledby="process-title">
+      <p class="label">How it works</p>
+      <h2 class="section-head" id="process-title">Simple process.<br>Clear results.</h2>
+      <ol class="steps">
+        <li class="step">
+          <span class="step-n">1</span>
+          <div class="step-body">
+            <h3>We audit what you have</h3>
+            <p>A focused look at your website, your Google presence, and your current traffic to find where you're losing potential clients.</p>
           </div>
-          <a class="button button-primary" href="mailto:hello@brightzonedigital.com?subject=Free%20Funnel%20Audit">
-            Get Your Free Funnel Audit
-          </a>
-        </div>
-      </section>
+        </li>
+        <li class="step">
+          <span class="step-n">2</span>
+          <div class="step-body">
+            <h3>We fix the highest-impact issues first</h3>
+            <p>No six-month roadmaps before anything moves. You'll see changes within the first two weeks.</p>
+          </div>
+        </li>
+        <li class="step">
+          <span class="step-n">3</span>
+          <div class="step-body">
+            <h3>We set up tracking that actually tells you something</h3>
+            <p>You'll know your cost per booking, which channels are working, and what to do more of.</p>
+          </div>
+        </li>
+        <li class="step">
+          <span class="step-n">4</span>
+          <div class="step-body">
+            <h3>We keep improving</h3>
+            <p>Monthly reporting, clear recommendations, and no hiding behind vanity metrics.</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <footer class="cta-block" aria-labelledby="cta-title">
+      <h2 id="cta-title">Ready to see what's costing you clients?</h2>
+      <p>Book a free 30-minute call. We'll look at your current setup and tell you exactly where we'd start &mdash; no pitch, no pressure.</p>
+      <a href="mailto:hello@brightzonedigital.com" class="btn-primary">Book a free call</a>
+      <p class="cta-email">Or email us directly: <a href="mailto:hello@brightzonedigital.com">hello@brightzonedigital.com</a></p>
+    </footer>
     </main>
+
   </div>
+  <script>
+    (function () {
+      const toggle = document.getElementById('a11y-toggle');
+      const panel = document.getElementById('a11y-panel');
+      const options = [
+        'a11y-large-text',
+        'a11y-high-contrast',
+        'a11y-highlight-links',
+        'a11y-reduced-motion'
+      ];
+
+      const setOption = (id, enabled) => {
+        document.body.classList.toggle(id, enabled);
+        const input = document.getElementById(id);
+        if (input) input.checked = enabled;
+        try {
+          localStorage.setItem(id, enabled ? 'true' : 'false');
+        } catch (e) {}
+      };
+
+      options.forEach((id) => {
+        let enabled = false;
+        try {
+          enabled = localStorage.getItem(id) === 'true';
+        } catch (e) {}
+        setOption(id, enabled);
+        const input = document.getElementById(id);
+        if (input) {
+          input.addEventListener('change', () => setOption(id, input.checked));
+        }
+      });
+
+      toggle.addEventListener('click', () => {
+        const expanded = toggle.getAttribute('aria-expanded') === 'true';
+        toggle.setAttribute('aria-expanded', String(!expanded));
+        panel.hidden = expanded;
+      });
+    })();
+  </script>
 </body>
 </html>
+
+

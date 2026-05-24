@@ -66,58 +66,33 @@ body::before {
 }
 
 .brand-mark {
-  width: 78px;
+  width: 72px;
   height: auto;
   overflow: visible;
   flex: 0 0 auto;
 }
 
-.sun-center-line,
+.sun-core,
+.sun-outline,
 .sun-ray {
-  fill: none;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
 
-.sun-center-line {
-  stroke-width: 2.2;
-  stroke: rgba(79, 96, 82, 0.86);
+.sun-core {
+  fill: #f3c989;
+}
+
+.sun-outline {
+  fill: none;
+  stroke: rgba(46, 132, 146, 0.9);
+  stroke-width: 1.9;
 }
 
 .sun-ray {
-  stroke-width: 2.35;
-}
-
-.ray-1 {
-  stroke: #f7d8a8;
-}
-
-.ray-2 {
-  stroke: #f2c892;
-}
-
-.ray-3 {
-  stroke: #efb77c;
-}
-
-.ray-4 {
-  stroke: #d9c69b;
-}
-
-.ray-5 {
-  stroke: #c8d8b8;
-}
-
-.ray-6 {
-  stroke: #bcded2;
-}
-
-.ray-7 {
-  stroke: #9acdc9;
-}
-
-.ray-8 {
-  stroke: #87bebf;
+  fill: none;
+  stroke: rgba(46, 132, 146, 0.82);
+  stroke-width: 2.15;
 }
 
 .brand-name,
